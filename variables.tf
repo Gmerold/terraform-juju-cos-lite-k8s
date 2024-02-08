@@ -70,6 +70,7 @@ variable "git_depth" {
 variable "git_ssh_key" {
   description = "An optional SSH private key to use when cloning the repository."
   type        = string
+  default     = ""
 }
 variable "prometheus_alert_rules_path" {
   description = "Relative path in repo to prometheus rules."
