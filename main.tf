@@ -22,7 +22,7 @@ module "catalogue" {
 }
 
 module "cos-configuration" {
-  count = var.deploy_cos_configuration == true ? 1 : 0
+  count = var.deploy_cos_configuration ? 1 : 0
   source = "./modules/terraform-juju-cos-configuration-k8s"
 
   model_name = juju_model.cos.name
@@ -184,12 +184,12 @@ resource "juju_integration" "prometheus-catalogue" {
 # Provided by cos-configuration-k8s
 
 resource "juju_integration" "cos-configuration-grafana" {
-  for_each = module.cos-configuration
+  count = var.deploy_cos_configuration ? 1 : 0
   model = var.model_name
 
   application {
-    name     = each.app_name
-    endpoint = each.grafana_dashboards_endpoint
+    name     = module.cos-configuration.app_name
+    endpoint = module.cos-configuration.grafana_dashboards_endpoint
   }
 
   application {
@@ -198,12 +198,12 @@ resource "juju_integration" "cos-configuration-grafana" {
   }
 }
 resource "juju_integration" "cos-configuration-loki" {
-  for_each = module.cos-configuration
+  count = var.deploy_cos_configuration == true ? 1 : 0
   model = var.model_name
 
   application {
-    name     = each.app_name
-    endpoint = each.grafana_dashboards_endpoint
+    name     = module.cos-configuration.app_name
+    endpoint = module.cos-configuration.loki_config_endpoint
   }
 
   application {
@@ -212,12 +212,12 @@ resource "juju_integration" "cos-configuration-loki" {
   }
 }
 resource "juju_integration" "cos-configuration-prometheus" {
-  for_each = module.cos-configuration
+  count = var.deploy_cos_configuration == true ? 1 : 0
   model = var.model_name
 
   application {
-    name     = each.app_name
-    endpoint = each.grafana_dashboards_endpoint
+    name     = module.cos-configuration.app_name
+    endpoint = module.cos-configuration.prometheus_config_endpoint
   }
 
   application {
