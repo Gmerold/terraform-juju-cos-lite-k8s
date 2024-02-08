@@ -21,6 +21,24 @@ module "catalogue" {
   channel = var.catalogue_channel
 }
 
+module "cos-configuration" {
+  count = var.deploy_cos_configuration == true ? 1 : 0
+  source = "./modules/terraform-juju-cos-configuration-k8s"
+
+  model_name = juju_model.cos.name
+  app_name = var.cos_configuration_app_name
+  channel = var.cos_configuration_channel
+
+  git_repo = var.git_repo
+  git_branch = var.git_branch
+  git_rev = var.git_rev
+  git_depth = var.git_depth
+  git_ssh_key = var.git_ssh_key
+  prometheus_alert_rules_path = var.prometheus_alert_rules_path
+  loki_alert_rules_path = var.loki_alert_rules_path
+  grafana_dashboards_path = var.grafana_dashboards_path
+}
+
 module "grafana" {
   source = "./modules/terraform-juju-grafana-k8s"
 
@@ -160,6 +178,51 @@ resource "juju_integration" "prometheus-catalogue" {
   application {
     name     = module.prometheus.app_name
     endpoint = module.prometheus.catalogue_endpoint
+  }
+}
+
+# Provided by cos-configuration-k8s
+
+resource "juju_integration" "cos-configuration-grafana" {
+  count = var.deploy_cos_configuration == true ? 1 : 0
+  model = var.model_name
+
+  application {
+    name     = module.cos-configuration.app_name
+    endpoint = module.cos-configuration.grafana_dashboards_endpoint
+  }
+
+  application {
+    name     = module.grafana.app_name
+    endpoint = module.grafana.grafana_dashboard_endpoint
+  }
+}
+resource "juju_integration" "cos-configuration-loki" {
+  count = var.deploy_cos_configuration == true ? 1 : 0
+  model = var.model_name
+
+  application {
+    name     = module.cos-configuration.app_name
+    endpoint = module.cos-configuration.loki_config_endpoint
+  }
+
+  application {
+    name     = module.loki.app_name
+    endpoint = module.loki.logging_endpoint
+  }
+}
+resource "juju_integration" "cos-configuration-prometheus" {
+  count = var.deploy_cos_configuration == true ? 1 : 0
+  model = var.model_name
+
+  application {
+    name     = module.cos-configuration.app_name
+    endpoint = module.cos-configuration.prometheus_config_endpoint
+  }
+
+  application {
+    name     = module.prometheus.app_name
+    endpoint = module.prometheus.metrics_endpoint
   }
 }
 
