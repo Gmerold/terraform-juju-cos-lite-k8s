@@ -2,7 +2,7 @@
 # See LICENSE file for licensing details.
 
 resource "juju_model" "cos" {
-  name = var.model-name
+  name = var.model_name
 }
 
 module "alertmanager" {
@@ -56,277 +56,277 @@ module "traefik" {
 # Provided by Alertmanager
 
 resource "juju_integration" "alertmanager-metrics" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.metrics-endpoint
+    endpoint = module.alertmanager.metrics_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.metrics-endpoint
+    endpoint = module.prometheus.metrics_endpoint
   }
 }
 resource "juju_integration" "loki-alerting" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.alerting-endpoint
+    endpoint = module.alertmanager.alerting_endpoint
   }
 
   application {
     name     = module.loki.app_name
-    endpoint = module.loki.alertmanager-endpoint
+    endpoint = module.loki.alertmanager_endpoint
   }
 }
 resource "juju_integration" "prometheus-alerting" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.alerting-endpoint
+    endpoint = module.alertmanager.alerting_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.alertmanager-endpoint
+    endpoint = module.prometheus.alertmanager_endpoint
   }
 }
 resource "juju_integration" "alertmanager-grafana-dashboard" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.grafana-dashboard-endpoint
+    endpoint = module.alertmanager.grafana_dashboard_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana-dashboard-endpoint
+    endpoint = module.grafana.grafana_dashboard_endpoint
   }
 }
 resource "juju_integration" "alertmanager-grafana-source" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.grafana-source-endpoint
+    endpoint = module.alertmanager.grafana_source_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana-source-endpoint
+    endpoint = module.grafana.grafana_source_endpoint
   }
 }
 
 # Provided by Catalogue
 
 resource "juju_integration" "alertmanager-catalogue" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.catalogue-endpoint
+    endpoint = module.alertmanager.catalogue_endpoint
   }
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.catalogue-endpoint
+    endpoint = module.catalogue.catalogue_endpoint
   }
 }
 resource "juju_integration" "grafana-catalogue" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.catalogue-endpoint
+    endpoint = module.catalogue.catalogue_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.catalogue-endpoint
+    endpoint = module.grafana.catalogue_endpoint
   }
 }
 resource "juju_integration" "prometheus-catalogue" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.catalogue-endpoint
+    endpoint = module.catalogue.catalogue_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.catalogue-endpoint
+    endpoint = module.prometheus.catalogue_endpoint
   }
 }
 
 # Provided by Grafana
 
 resource "juju_integration" "grafana-metrics" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.metrics-endpoint
+    endpoint = module.grafana.metrics_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.metrics-endpoint
+    endpoint = module.prometheus.metrics_endpoint
   }
 }
 
 # Provided by Loki
 
 resource "juju_integration" "loki-metrics" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.loki.app_name
-    endpoint = module.loki.metrics-endpoint
+    endpoint = module.loki.metrics_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.metrics-endpoint
+    endpoint = module.prometheus.metrics_endpoint
   }
 }
 resource "juju_integration" "loki-grafana-dashboard" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.loki.app_name
-    endpoint = module.loki.grafana-dashboard-endpoint
+    endpoint = module.loki.grafana_dashboard_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana-dashboard-endpoint
+    endpoint = module.grafana.grafana_dashboard_endpoint
   }
 }
 resource "juju_integration" "loki-grafana-source" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.loki.app_name
-    endpoint = module.loki.grafana-source-endpoint
+    endpoint = module.loki.grafana_source_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana-source-endpoint
+    endpoint = module.grafana.grafana_source_endpoint
   }
 }
 
 # Provided by Prometheus
 
 resource "juju_integration" "prometheus-grafana-dashboard" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.grafana-dashboard-endpoint
+    endpoint = module.prometheus.grafana_dashboard_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana-dashboard-endpoint
+    endpoint = module.grafana.grafana_dashboard_endpoint
   }
 }
 resource "juju_integration" "prometheus-grafana-source" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.grafana-source-endpoint
+    endpoint = module.prometheus.grafana_source_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.grafana-source-endpoint
+    endpoint = module.grafana.grafana_source_endpoint
   }
 }
 
 # Provided by Traefik
 
 resource "juju_integration" "alertmanager-ingress" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.alertmanager.app_name
-    endpoint = module.alertmanager.ingress-endpoint
+    endpoint = module.alertmanager.ingress_endpoint
   }
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress-endpoint
+    endpoint = module.traefik.ingress_endpoint
   }
 }
 resource "juju_integration" "catalogue-ingress" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress-endpoint
+    endpoint = module.traefik.ingress_endpoint
   }
 
   application {
     name     = module.catalogue.app_name
-    endpoint = module.catalogue.ingress-endpoint
+    endpoint = module.catalogue.ingress_endpoint
   }
 }
 resource "juju_integration" "grafana-ingress" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.traefik-route-endpoint
+    endpoint = module.traefik.traefik_route_endpoint
   }
 
   application {
     name     = module.grafana.app_name
-    endpoint = module.grafana.ingress-endpoint
+    endpoint = module.grafana.ingress_endpoint
   }
 }
 resource "juju_integration" "loki-ingress" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress-per-unit-endpoint
+    endpoint = module.traefik.ingress_per_unit_endpoint
   }
 
   application {
     name     = module.loki.app_name
-    endpoint = module.loki.ingress-endpoint
+    endpoint = module.loki.ingress_endpoint
   }
 }
 resource "juju_integration" "prometheus-ingress" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.ingress-per-unit-endpoint
+    endpoint = module.traefik.ingress_per_unit_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.ingress-endpoint
+    endpoint = module.prometheus.ingress_endpoint
   }
 }
 resource "juju_integration" "traefik-metrics" {
-  model = var.model-name
+  model = var.model_name
 
   application {
     name     = module.traefik.app_name
-    endpoint = module.traefik.metrics-endpoint
+    endpoint = module.traefik.metrics_endpoint
   }
 
   application {
     name     = module.prometheus.app_name
-    endpoint = module.prometheus.metrics-endpoint
+    endpoint = module.prometheus.metrics_endpoint
   }
 }

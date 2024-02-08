@@ -6,27 +6,27 @@ output "app_name" {
   value       = juju_application.grafana.name
 }
 
-output "ingress-endpoint" {
+output "ingress_endpoint" {
   description = "Name of the endpoint used by Grafana for the ingress configuration."
   value       = "ingress"
 }
 
-output "catalogue-endpoint" {
+output "catalogue_endpoint" {
   description = "Name of the endpoint used by Grafana for the Catalogue integration."
   value       = "catalogue"
 }
 
-output "grafana-dashboard-endpoint" {
+output "grafana_dashboard_endpoint" {
   description = "Name of the endpoint used by Grafana for handling dashboards sent by client applications."
   value       = "grafana-dashboard"
 }
 
-output "grafana-source-endpoint" {
+output "grafana_source_endpoint" {
   description = "Name of the endpoint used by Grafana for accepting data source configurations sent by client applications."
   value       = "grafana-source"
 }
 
-output "metrics-endpoint" {
+output "metrics_endpoint" {
   description = "Exposes the Prometheus metrics endpoint providing telemetry about the Grafana instance."
   value       = "metrics-endpoint"
 }

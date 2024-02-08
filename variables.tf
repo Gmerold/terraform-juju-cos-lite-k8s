@@ -1,7 +1,7 @@
 # Copyright 2024 Canonical Ltd.
 # See LICENSE file for licensing details.
 
-variable "model-name" {
+variable "model_name" {
   description = "Name of the Juju model to deploy applications to."
   type        = string
   default     = "cos"

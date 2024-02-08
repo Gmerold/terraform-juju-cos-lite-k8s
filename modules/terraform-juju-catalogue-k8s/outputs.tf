@@ -6,12 +6,12 @@ output "app_name" {
   value       = juju_application.catalogue.name
 }
 
-output "ingress-endpoint" {
+output "ingress_endpoint" {
   description = "Name of the endpoint used by the Catalogue for the ingress configuration."
   value       = "ingress"
 }
 
-output "catalogue-endpoint" {
+output "catalogue_endpoint" {
   description = "Name of the endpoint used by the Catalogue for integrating with other applications."
   value       = "catalogue"
 }

@@ -6,37 +6,37 @@ output "app_name" {
   value       = juju_application.prometheus.name
 }
 
-output "ingress-endpoint" {
+output "ingress_endpoint" {
   description = "Name of the endpoint used by Prometheus for the ingress configuration."
   value       = "ingress"
 }
 
-output "metrics-endpoint" {
+output "metrics_endpoint" {
   description = "Name of the endpoint used by Prometheus to get metrics from client applications."
   value       = "metrics-endpoint"
 }
 
-output "catalogue-endpoint" {
+output "catalogue_endpoint" {
   description = "Name of the endpoint used by Prometheus for the Catalogue integration."
   value       = "catalogue"
 }
 
-output "alertmanager-endpoint" {
+output "alertmanager_endpoint" {
   description = "Name of the endpoint used by Prometheus to send out the alerts."
   value       = "alertmanager"
 }
 
-output "grafana-dashboard-endpoint" {
+output "grafana_dashboard_endpoint" {
   description = "Forwards the built-in Grafana dashboard(s) for monitoring Prometheus."
   value       = "grafana-dashboard"
 }
 
-output "grafana-source-endpoint" {
+output "grafana_source_endpoint" {
   description = "Name of the endpoint used by Prometheus to create a datasource in Grafana."
   value       = "grafana-source"
 }
 
-output "receive-remote-write-endpoint" {
+output "receive_remote_write_endpoint" {
   description = "Name of the endpoint used by Prometheus to accept data from remote-write-compatible agents."
   value       = "receive-remote-write"
 }
