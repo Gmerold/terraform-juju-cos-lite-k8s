@@ -8,7 +8,7 @@ resource "juju_model" "cos" {
 module "alertmanager" {
   source = "./modules/terraform-juju-alertmanager-k8s"
 
-  model-name = juju_model.cos.name
+  model_name = juju_model.cos.name
   app_name = var.alertmanager_app_name
   channel = var.alertmanager_channel
 }
@@ -16,7 +16,7 @@ module "alertmanager" {
 module "catalogue" {
   source = "./modules/terraform-juju-catalogue-k8s"
 
-  model-name = juju_model.cos.name
+  model_name = juju_model.cos.name
   app_name = var.catalogue_app_name
   channel = var.catalogue_channel
 }
@@ -24,7 +24,7 @@ module "catalogue" {
 module "grafana" {
   source = "./modules/terraform-juju-grafana-k8s"
 
-  model-name = juju_model.cos.name
+  model_name = juju_model.cos.name
   app_name = var.grafana_app_name
   channel = var.grafana_channel
 }
@@ -32,7 +32,7 @@ module "grafana" {
 module "loki" {
   source = "./modules/terraform-juju-loki-k8s"
 
-  model-name = juju_model.cos.name
+  model_name = juju_model.cos.name
   app_name = var.loki_app_name
   channel = var.loki_channel
 }
@@ -40,7 +40,7 @@ module "loki" {
 module "prometheus" {
   source = "./modules/terraform-juju-prometheus-k8s"
 
-  model-name = juju_model.cos.name
+  model_name = juju_model.cos.name
   app_name = var.prometheus_app_name
   channel = var. prometheus_channel
 }
@@ -48,7 +48,7 @@ module "prometheus" {
 module "traefik" {
   source = "./modules/terraform-juju-traefik-k8s"
 
-  model-name = juju_model.cos.name
+  model_name = juju_model.cos.name
   app_name = var.traefik_app_name
   channel = var.traefik_channel
 }
