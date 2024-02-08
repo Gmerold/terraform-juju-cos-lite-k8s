@@ -330,16 +330,3 @@ resource "juju_integration" "traefik-metrics" {
     endpoint = module.prometheus.metrics-endpoint
   }
 }
-
-# Cross-model integrations offers
-
-resource "juju_offer" "prometheus-remote-write" {
-  model            = juju_model.cos.name
-  application_name = module.prometheus.app_name
-  endpoint         = module.prometheus.receive-remote-write-endpoint
-}
-resource "juju_offer" "loki-logging" {
-  model            = juju_model.cos.name
-  application_name = module.loki.app_name
-  endpoint         = module.loki.logging-endpoint
-}
