@@ -182,14 +182,13 @@ resource "juju_integration" "prometheus-catalogue" {
 }
 
 # Provided by cos-configuration-k8s
-
 resource "juju_integration" "cos-configuration-grafana" {
   count = var.deploy_cos_configuration ? 1 : 0
   model = var.model_name
 
   application {
-    name     = module.cos-configuration.app_name
-    endpoint = module.cos-configuration.grafana_dashboards_endpoint
+    name     = module.cos-configuration[count.index].app_name
+    endpoint = module.cos-configuration[count.index].grafana_dashboards_endpoint
   }
 
   application {
@@ -202,8 +201,8 @@ resource "juju_integration" "cos-configuration-loki" {
   model = var.model_name
 
   application {
-    name     = module.cos-configuration.app_name
-    endpoint = module.cos-configuration.loki_config_endpoint
+    name     = module.cos-configuration[count.index].app_name
+    endpoint = module.cos-configuration[count.index].loki_config_endpoint
   }
 
   application {
@@ -216,8 +215,8 @@ resource "juju_integration" "cos-configuration-prometheus" {
   model = var.model_name
 
   application {
-    name     = module.cos-configuration.app_name
-    endpoint = module.cos-configuration.prometheus_config_endpoint
+    name     = module.cos-configuration[count.index].app_name
+    endpoint = module.cos-configuration[count.index].prometheus_config_endpoint
   }
 
   application {
